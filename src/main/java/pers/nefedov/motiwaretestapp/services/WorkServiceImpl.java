@@ -78,7 +78,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public List<WorkDto> getAllByCheckpointId(long checkpointId) {
-        return null;
+        return workMapper.mapToWorkDtoList(workRepository.findByCheckpoint_Id(checkpointId));
     }
 
     private Work getWorkById(long id) {

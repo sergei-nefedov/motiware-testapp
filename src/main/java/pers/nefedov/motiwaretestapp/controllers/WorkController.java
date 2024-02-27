@@ -61,7 +61,7 @@ public class WorkController {
             summary = "Получение списка работ по заданному проекту",
             description = "Проект задается с помощью его идентификатора, передаваемого в пути запроса."
     )
-    @GetMapping("/get/{projectId}")
+    @GetMapping("/get_by_project/{projectId}")
     public List<WorkDto> getAllByProjectId(@PathVariable @Schema(description = "Идентификатор проекта", example = "1") long projectId) {
         return workService.getAllByProjectId(projectId);
     }
@@ -70,7 +70,7 @@ public class WorkController {
             summary = "Получение списка работ для заданной контрольной точки",
             description = "Контрольная точка задается с помощью ее идентификатора, передаваемого в пути запроса."
     )
-    @GetMapping("/get/{checkpointId}")
+    @GetMapping("/get_by_checkpoint/{checkpointId}")
     public List<WorkDto> getAllByCheckpointId(@PathVariable @Schema(description = "Идентификатор контрольной точки", example = "1") long checkpointId) {
         return workService.getAllByCheckpointId(checkpointId);
     }
