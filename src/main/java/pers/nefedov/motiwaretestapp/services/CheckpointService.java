@@ -3,6 +3,7 @@ package pers.nefedov.motiwaretestapp.services;
 import pers.nefedov.motiwaretestapp.dto.CheckpointDto;
 import pers.nefedov.motiwaretestapp.dto.LoadCheckpointsFromFileDto;
 import pers.nefedov.motiwaretestapp.dto.WorkDto;
+import pers.nefedov.motiwaretestapp.models.Checkpoint;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ public interface CheckpointService {
     void loadFromFile(LoadCheckpointsFromFileDto loadCheckpointsFromFileDto);
 
     List<CheckpointDto> getCheckpointsByProjectId(long projectId);
+
+    Checkpoint getCheckpointById(long checkpointId);
+
 }
 
 

@@ -38,5 +38,7 @@ public class Work {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    //private Checkpoint checkpoint;
+    @ManyToOne
+    @JoinColumn(name = "checkpoint_id")
+    private Checkpoint checkpoint;
 }

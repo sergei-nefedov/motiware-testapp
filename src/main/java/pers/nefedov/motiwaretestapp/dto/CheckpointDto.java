@@ -14,6 +14,4 @@ public class CheckpointDto {
     private String finishDate;
 
     private Project project;
-
-    private Work work;
 }

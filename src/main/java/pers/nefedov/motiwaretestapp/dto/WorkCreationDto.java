@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import pers.nefedov.motiwaretestapp.models.Checkpoint;
 
 @Getter
 @Setter
@@ -30,4 +31,8 @@ public class WorkCreationDto {
     @NotEmpty
     @Min(0)
     private long projectId;
+
+    @Schema(description = "Идентификатор контрольной точки, к которой относится работа", example = "1")
+    @Min(0)
+    private long checkpointId;
 }

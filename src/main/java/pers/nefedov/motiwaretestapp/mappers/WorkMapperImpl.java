@@ -6,8 +6,10 @@ import pers.nefedov.motiwaretestapp.dto.ProjectDto;
 import pers.nefedov.motiwaretestapp.dto.WorkCreationDto;
 import pers.nefedov.motiwaretestapp.dto.WorkDto;
 import pers.nefedov.motiwaretestapp.exceptions.IncorrectRequestException;
+import pers.nefedov.motiwaretestapp.models.Checkpoint;
 import pers.nefedov.motiwaretestapp.models.Project;
 import pers.nefedov.motiwaretestapp.models.Work;
+import pers.nefedov.motiwaretestapp.services.CheckpointService;
 import pers.nefedov.motiwaretestapp.services.ProjectService;
 
 import java.util.ArrayList;
@@ -17,13 +19,18 @@ import java.util.List;
 @Component
 public class WorkMapperImpl implements WorkMapper {
     private final ProjectService projectService;
+    private final CheckpointService checkpointService;
     private final DateMapper dateMapper;
     private final ProjectMapper projectMapper;
+    private final CheckpointMapper checkpointMapper;
 
     @Override
     public Work mapToWork(WorkCreationDto workCreationDto) {
         Project project = projectService.getProjectById(workCreationDto.getProjectId());
         if (project == null) throw new IncorrectRequestException();
+        long checkpointId = workCreationDto.getCheckpointId();
+        Checkpoint checkpoint = checkpointService.getCheckpointById(checkpointId);
+        if (checkpointId != 0 && checkpoint == null) throw new IncorrectRequestException();
         Work work = new Work();
         work.setName(workCreationDto.getName());
         work.setStartDate(dateMapper.mapToDate(workCreationDto.getStartDate()));
@@ -31,6 +38,7 @@ public class WorkMapperImpl implements WorkMapper {
         work.setAverageCompletionPercentage(0);
         work.setImplementer(workCreationDto.getImplementer());
         work.setProject(project);
+        work.setCheckpoint(checkpoint);
         return work;
     }
 
@@ -44,6 +52,7 @@ public class WorkMapperImpl implements WorkMapper {
         workDto.setAverageCompletionPercentage(work.getAverageCompletionPercentage());
         workDto.setImplementer(work.getImplementer());
         workDto.setProjectDto(projectMapper.mapToProjectDto(work.getProject()));
+        workDto.setCheckpointDto(checkpointMapper.mapToCheckpointDto(work.getCheckpoint()));
         return workDto;
     }
 
