@@ -32,7 +32,7 @@ public class WorkCreationDto {
     @Min(0)
     private long projectId;
 
-    @Schema(description = "Идентификатор контрольной точки, к которой относится работа", example = "1")
+    @Schema(description = "Идентификатор контрольной точки, к которой относится работа", example = "0")
     @Min(0)
     private long checkpointId;
 }
