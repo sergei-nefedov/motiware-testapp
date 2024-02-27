@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-
 @Entity
 @Getter
 @Setter
@@ -30,7 +29,7 @@ public class Checkpoint {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "work_id")
     private Work work;
 }
