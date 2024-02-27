@@ -62,6 +62,10 @@ public class WorkController {
         return workService.getAllByProjectId(projectId);
     }
 
+    @Operation(
+            summary = "Получение списка работ для заданной контрольной точки",
+            description = "Проект задается с помощью его идентификатора, передаваемого в пути запроса."
+    )
     @GetMapping("/get/{checkpointId}")
     public List<WorkDto> getAllByCheckpointId(@PathVariable @Schema(description = "Идентификатор контрольной точки", example = "1") long checkpointId) {
         return workService.getAllByCheckpointId(checkpointId);
@@ -85,5 +89,6 @@ public class WorkController {
         - Спроектировать структуру БД, создать БД и наполнить её тестовыми данными
         (не менее 10 тыс проектов и 100 тыс задач);
         - Завершен - все работы проекты выполнены (реализовать)
+        все проверить
     */
 }
