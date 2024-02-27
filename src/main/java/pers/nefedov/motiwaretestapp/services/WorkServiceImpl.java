@@ -9,6 +9,7 @@ import pers.nefedov.motiwaretestapp.exceptions.ForbiddenException;
 import pers.nefedov.motiwaretestapp.exceptions.IncorrectRequestException;
 import pers.nefedov.motiwaretestapp.mappers.DateMapper;
 import pers.nefedov.motiwaretestapp.mappers.WorkMapper;
+import pers.nefedov.motiwaretestapp.models.Checkpoint;
 import pers.nefedov.motiwaretestapp.models.Project;
 import pers.nefedov.motiwaretestapp.models.Work;
 import pers.nefedov.motiwaretestapp.repositories.WorkRepository;
@@ -24,6 +25,7 @@ public class WorkServiceImpl implements WorkService {
     private final WorkMapper workMapper;
     private final DateMapper dateMapper;
     private final ProjectService projectService;
+    private final CheckpointService checkpointService;
 
     @Override
     public WorkDto createWork(WorkCreationDto workCreationDto) {
@@ -51,9 +53,9 @@ public class WorkServiceImpl implements WorkService {
         double averageCompletionPercentage = workPatchDto.getAverageCompletionPercentage();
         String implementer = workPatchDto.getImplementer();
         long projectId = workPatchDto.getProjectId();
+        long checkpointId = workPatchDto.getCheckpointId();
 
         Project project = projectService.getProjectById(projectId);
-
         if (projectId != 0 && project == null) throw new IncorrectRequestException();
         if (name != null) work.setName(name);
         if (startDate != null) work.setStartDate(startDate);
@@ -61,6 +63,9 @@ public class WorkServiceImpl implements WorkService {
         if (implementer != null) work.setImplementer(implementer);
         if (averageCompletionPercentage != 0) work.setAverageCompletionPercentage(averageCompletionPercentage);
         if (projectId != 0) work.setProject(project);
+        Checkpoint checkpoint = checkpointService.getCheckpointById(checkpointId);
+        if (checkpointId != 0 && checkpoint == null) throw new IncorrectRequestException();
+        work.setCheckpoint(checkpoint);
 
         return workMapper.mapToWorkDto(workRepository.save(work));
     }
@@ -73,7 +78,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public List<WorkDto> getAllByCheckpointId(long checkpointId) {
-        return null;
+        return workMapper.mapToWorkDtoList(workRepository.findByCheckpoint_Id(checkpointId));
     }
 
     private Work getWorkById(long id) {

@@ -24,12 +24,12 @@ public class CheckpointMapperImpl implements CheckpointMapper {
 
     @Override
     public CheckpointDto mapToCheckpointDto(Checkpoint checkpoint) {
+        if (checkpoint == null) return null;
         CheckpointDto checkpointDto = new CheckpointDto();
         checkpointDto.setId(checkpoint.getId());
         checkpointDto.setName(checkpoint.getName());
         checkpointDto.setFinishDate(dateMapper.mapDateToString(checkpoint.getFinishDate()));
         checkpointDto.setProject(checkpoint.getProject());
-        checkpointDto.setWork(checkpoint.getWork());
         return checkpointDto;
     }
 

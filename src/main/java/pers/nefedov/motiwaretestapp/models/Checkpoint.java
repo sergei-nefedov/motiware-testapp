@@ -29,7 +29,4 @@ public class Checkpoint {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @OneToOne
-    @JoinColumn(name = "work_id")
-    private Work work;
 }

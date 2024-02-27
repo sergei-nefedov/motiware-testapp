@@ -24,4 +24,6 @@ public class WorkDto {
     private String implementer;
 
     private ProjectDto projectDto;
+
+    private CheckpointDto checkpointDto;
 }

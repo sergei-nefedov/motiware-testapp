@@ -19,4 +19,6 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
     void deleteById(@NonNull Long id);
 
     List<Work> findByProject_Id(@NonNull Long id);
+
+    List<Work> findByCheckpoint_Id(@NonNull Long id);
 }

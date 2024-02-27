@@ -17,6 +17,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -65,6 +66,12 @@ public class CheckpointServiceImpl implements CheckpointService {
     @Override
     public List<CheckpointDto> getCheckpointsByProjectId(long projectId) {
         return checkpointMapper.mapTocheckpointDtoList(checkpointRepository.findByProject_Id(projectId));
+    }
+
+    @Override
+    public Checkpoint getCheckpointById(long checkpointId) {
+        Optional<Checkpoint> optionalCheckpoint = checkpointRepository.findById(checkpointId);
+        return optionalCheckpoint.orElse(null);
     }
 
     public Checkpoint createCheckpoint(CheckpointCreationDto checkpointCreationDto) {
