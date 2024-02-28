@@ -33,8 +33,4 @@ public class Project {
 
     @Column(name="director")
     private String director;
-
-
-//    private List<Work> works;
-//    private List<Checkpoint> checkpoints;
 }
