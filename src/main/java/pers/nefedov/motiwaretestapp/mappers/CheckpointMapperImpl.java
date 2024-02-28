@@ -34,7 +34,7 @@ public class CheckpointMapperImpl implements CheckpointMapper {
     }
 
     @Override
-    public List<CheckpointDto> mapTocheckpointDtoList(List<Checkpoint> checkpoints) {
+    public List<CheckpointDto> mapToCheckpointDtoList(List<Checkpoint> checkpoints) {
         List<CheckpointDto> checkpointDtoList = new ArrayList<>(checkpoints.size());
         for (Checkpoint checkpoint : checkpoints) checkpointDtoList.add(this.mapToCheckpointDto(checkpoint));
         return checkpointDtoList;
