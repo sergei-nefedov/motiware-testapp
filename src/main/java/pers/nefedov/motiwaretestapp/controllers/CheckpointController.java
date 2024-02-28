@@ -20,7 +20,9 @@ public class CheckpointController {
     private final CheckpointService checkpointService;
     @Operation(
             summary = "Загрузка из файла контрольных точек по заданному проекту",
-            description = "Проект определяется по его идентификатору, передаваемому в теле запроса."
+            description = "Проект определяется по его идентификатору, передаваемому в теле запроса. В случае если проекта " +
+                    "с указанным идентификатором не существует, а также если в файле содержатся контрольные точки с " +
+                    "совпадающими (независимо от регистра) названиями, загрузка не будет произведена."
     )
     @PostMapping("/load_from_file")
     public void loadFromFile(@RequestBody @Valid LoadCheckpointsFromFileDto loadCheckpointsFromFileDto) {

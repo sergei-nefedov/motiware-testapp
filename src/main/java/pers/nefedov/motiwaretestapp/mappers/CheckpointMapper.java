@@ -11,5 +11,5 @@ import java.util.List;
 public interface CheckpointMapper {
     Checkpoint mapToCheckpoint(CheckpointCreationDto workCreationDto);
     CheckpointDto mapToCheckpointDto(Checkpoint checkpoint);
-    List<CheckpointDto> mapTocheckpointDtoList(List<Checkpoint> checkpoints);
+    List<CheckpointDto> mapToCheckpointDtoList(List<Checkpoint> checkpoints);
 }
