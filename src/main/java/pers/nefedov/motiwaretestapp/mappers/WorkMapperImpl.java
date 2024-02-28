@@ -11,8 +11,10 @@ import pers.nefedov.motiwaretestapp.models.Project;
 import pers.nefedov.motiwaretestapp.models.Work;
 import pers.nefedov.motiwaretestapp.services.CheckpointService;
 import pers.nefedov.motiwaretestapp.services.ProjectService;
+import pers.nefedov.motiwaretestapp.validators.DatesValidator;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -23,6 +25,7 @@ public class WorkMapperImpl implements WorkMapper {
     private final DateMapper dateMapper;
     private final ProjectMapper projectMapper;
     private final CheckpointMapper checkpointMapper;
+    private final DatesValidator datesValidator;
 
     @Override
     public Work mapToWork(WorkCreationDto workCreationDto) {
@@ -33,6 +36,11 @@ public class WorkMapperImpl implements WorkMapper {
         if (checkpointId != 0 && checkpoint == null) throw new IncorrectRequestException();
         Work work = new Work();
         work.setName(workCreationDto.getName());
+        Date startDate = dateMapper.mapToDate(workCreationDto.getStartDate());
+        Date finishDate = dateMapper.mapToDate(workCreationDto.getFinishDate());
+        Date checkpointDate = checkpoint == null ? null : checkpoint.getFinishDate();
+        if (!datesValidator.datesIsCorrect(startDate, finishDate)) throw new IncorrectRequestException();
+        if (checkpointDate != null && !datesValidator.datesIsCorrect(finishDate, checkpointDate)) throw new IncorrectRequestException();
         work.setStartDate(dateMapper.mapToDate(workCreationDto.getStartDate()));
         work.setFinishDate(dateMapper.mapToDate(workCreationDto.getFinishDate()));
         work.setAverageCompletionPercentage(0);

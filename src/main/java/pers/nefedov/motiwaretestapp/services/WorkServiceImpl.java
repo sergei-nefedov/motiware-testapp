@@ -13,6 +13,7 @@ import pers.nefedov.motiwaretestapp.models.Checkpoint;
 import pers.nefedov.motiwaretestapp.models.Project;
 import pers.nefedov.motiwaretestapp.models.Work;
 import pers.nefedov.motiwaretestapp.repositories.WorkRepository;
+import pers.nefedov.motiwaretestapp.validators.DatesValidator;
 
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,7 @@ public class WorkServiceImpl implements WorkService {
     private final DateMapper dateMapper;
     private final ProjectService projectService;
     private final CheckpointService checkpointService;
+    private final DatesValidator datesValidator;
 
     @Override
     public WorkDto createWork(WorkCreationDto workCreationDto) {
@@ -50,6 +52,7 @@ public class WorkServiceImpl implements WorkService {
         String name = workPatchDto.getName();
         Date startDate = dateMapper.mapToDate(workPatchDto.getStartDate());
         Date finishtDate = dateMapper.mapToDate(workPatchDto.getFinishDate());
+        if (!datesValidator.datesIsCorrect(startDate, finishtDate)) throw new IncorrectRequestException();
         double averageCompletionPercentage = workPatchDto.getAverageCompletionPercentage();
         String implementer = workPatchDto.getImplementer();
         long projectId = workPatchDto.getProjectId();
@@ -65,6 +68,8 @@ public class WorkServiceImpl implements WorkService {
         if (projectId != 0) work.setProject(project);
         Checkpoint checkpoint = checkpointService.getCheckpointById(checkpointId);
         if (checkpointId != 0 && checkpoint == null) throw new IncorrectRequestException();
+        Date checkpointDate = checkpoint == null ? null : checkpoint.getFinishDate();
+        if (checkpointDate != null && !datesValidator.datesIsCorrect(finishtDate, checkpointDate)) throw new IncorrectRequestException();
         work.setCheckpoint(checkpoint);
 
         return workMapper.mapToWorkDto(workRepository.save(work));
