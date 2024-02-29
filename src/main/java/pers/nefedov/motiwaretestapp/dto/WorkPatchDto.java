@@ -23,17 +23,14 @@ public class WorkPatchDto { //TODO validation
     private Long id;
 
     @Schema(description = "Название работы", example = "Подготовка котлована")
-    @NotEmpty
     @Size(min = 1, max = 255)
     private String name;
 
     @Schema(description = "Дата начала работы", example = "01.01.2030")
-    @NotEmpty
     @Size(min = 10, max = 10)
     private String startDate;
 
     @Schema(description = "Дата окончания работы", example = "20.02.2030")
-    @NotEmpty
     @Size(min = 10, max = 10)
     private String finishDate;
 
@@ -44,12 +41,10 @@ public class WorkPatchDto { //TODO validation
     private double averageCompletionPercentage;
 
     @Schema(description = "Исполнитель работы", example = "Труба Н.Н.")
-    @NotEmpty
     @Size(min = 1, max = 255)
     private String implementer;
 
     @Schema(description = "Идентификатор проекта, к которому относится работа", example = "1")
-    @NotEmpty
     @Min(0)
     private long projectId;
 

@@ -52,7 +52,7 @@ public class WorkServiceImpl implements WorkService {
         String name = workPatchDto.getName();
         Date startDate = dateMapper.mapToDate(workPatchDto.getStartDate());
         Date finishtDate = dateMapper.mapToDate(workPatchDto.getFinishDate());
-        if (!datesValidator.datesIsCorrect(startDate, finishtDate)) throw new IncorrectRequestException();
+        if (startDate != null && finishtDate != null &&!datesValidator.datesIsCorrect(startDate, finishtDate)) throw new IncorrectRequestException();
         double averageCompletionPercentage = workPatchDto.getAverageCompletionPercentage();
         String implementer = workPatchDto.getImplementer();
         long projectId = workPatchDto.getProjectId();
