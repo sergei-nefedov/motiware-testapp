@@ -77,14 +77,4 @@ public class WorkController {
     public List<WorkDto> getAllByCheckpointId(@PathVariable @Schema(description = "Идентификатор контрольной точки", example = "1") long checkpointId) {
         return workService.getAllByCheckpointId(checkpointId);
     }
-    /* TODO
-        - Создать тестовое приложение, демонстрирующее вызов REST API сервера c
-        использованием http-протокола;
-        - Сформировать нагрузочный тест, делающий не менее 5 запросов в секунду на
-        чтение и изменение работ, а также на выполнение действий для проекта
-        3. Исходный код в zip-архиве c git репозиторием;
-        4. Описание сборки и запуска;
-        - Завершен - все работы проекты выполнены (реализовать)
-        все проверить
-    */
 }
