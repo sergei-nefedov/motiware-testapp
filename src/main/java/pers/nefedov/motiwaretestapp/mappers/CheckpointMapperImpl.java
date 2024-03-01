@@ -6,7 +6,6 @@ import pers.nefedov.motiwaretestapp.dto.CheckpointCreationDto;
 import pers.nefedov.motiwaretestapp.dto.CheckpointDto;
 import pers.nefedov.motiwaretestapp.models.Checkpoint;
 
-
 import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor

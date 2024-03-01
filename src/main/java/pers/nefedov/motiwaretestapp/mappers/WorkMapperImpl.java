@@ -2,7 +2,6 @@ package pers.nefedov.motiwaretestapp.mappers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import pers.nefedov.motiwaretestapp.dto.ProjectDto;
 import pers.nefedov.motiwaretestapp.dto.WorkCreationDto;
 import pers.nefedov.motiwaretestapp.dto.WorkDto;
 import pers.nefedov.motiwaretestapp.exceptions.IncorrectRequestException;

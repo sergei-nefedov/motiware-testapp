@@ -3,7 +3,6 @@ package pers.nefedov.motiwaretestapp.services;
 import pers.nefedov.motiwaretestapp.dto.WorkCreationDto;
 import pers.nefedov.motiwaretestapp.dto.WorkDto;
 import pers.nefedov.motiwaretestapp.dto.WorkPatchDto;
-import pers.nefedov.motiwaretestapp.models.Work;
 
 import java.util.List;
 
