@@ -14,7 +14,8 @@ import lombok.Setter;
 @Table(name="projects")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "projectsIdSeq")
+    @SequenceGenerator(name = "projectsIdSeq", sequenceName = "projects_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 

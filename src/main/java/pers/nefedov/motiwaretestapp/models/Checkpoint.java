@@ -15,7 +15,8 @@ import java.util.Date;
 @Table(name="checkpoints")
 public class Checkpoint {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "checkpointsIdSeq")
+    @SequenceGenerator(name = "checkpointsIdSeq", sequenceName = "checkpoints_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 
